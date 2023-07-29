@@ -1,3 +1,8 @@
+'''
+Write a program that fetches the price and mileage of the top 20 sellers selling a desired car 
+(the car name is provided as input) from the Truecar website and stores it in a preferred database.
+'''
+
 from bs4.element import PYTHON_SPECIFIC_ENCODINGS
 import requests
 from bs4 import BeautifulSoup
