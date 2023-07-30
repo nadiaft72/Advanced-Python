@@ -15,6 +15,7 @@ Achievements:
 •	Showcased proficiency in Python and data analysis using essential libraries.
 
 --------------------------------------------------------------------------------------------------------
+
 **Age Calculator**
 Built a Python program using datetime to accurately calculate a person's age based on their input birthdate (yyyy/mm/dd). The program validates the date format and handles invalid cases gracefully by displaying "WRONG" in the output.
 Tools: Python, datetime library
@@ -31,7 +32,6 @@ Achievements:
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 **Football Player Team Assignment**
 Developed a Python program to randomly assign 22 football players to Team A and Team B. Using OOP and the random module, the program ensures each team has exactly 12 players, displaying the player names and their respective teams as the final output.
 
@@ -47,8 +47,33 @@ Achievements:
 •	Demonstrated proficiency in OOP and randomization techniques.
 •	Achieved balanced and fair team distributions, showcasing strong problem-solving skills.
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+**Employee Info Manager**
+Description: Created an Employee Info Manager for a design company, using Python and MySQL. The system organizes employees' names, heights, and weights, sorting them in ascending order of height. In case of height ties, it prioritizes lower weights to maintain precise ordering. Ensured data integrity by handling unique height and weight combinations.
+Key Achievements:
+•	Developed a streamlined Employee Info Manager with Python and MySQL.
+•	Optimized sorting algorithm for efficiency.
+•	Ensured 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Employee Info Manager**
+Description: Created an Employee Info Manager for a design company, using Python and MySQL. The system organizes employees' names, heights, and weights, sorting them in ascending order of height. In case of height ties, it prioritizes lower weights to maintain precise ordering. Ensured data integrity by handling unique height and weight combinations.
+Key Achievements:
+•	Developed a streamlined Employee Info Manager with Python and MySQL.
+•	Optimized sorting algorithm for efficiency.
+•	Ensured accurate data organization by handling height and weight uniqueness.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Email & Password Manager**
+Developed a Python-based Email & Password Manager that validates email format using regular expressions, securely stores the data in a MySQL database, and enforces password complexity. Ensured user-friendly input and robust error handling for enhanced usability.
+Key Achievements:
+•	Implemented Email & Password Manager with Python and MySQL.
+•	Validated email format using regular expressions.
+•	Enforced password complexity for enhanced security.
+•	Demonstrated strong focus on usability and error handling.
 
 
 
