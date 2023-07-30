@@ -1,42 +1,38 @@
-'''
-Employee Information:
-A database containing employees' information, including their names, heights, and weights, has been designed for a design company. Write a program that reads the information from this database file and prints the employees in ascending order of height in the output, along with their names and weights. (If two individuals have the same height, print the one with the lower weight first). It is guaranteed that no two individuals have the same height and weight.
-
-The format of the information in the database table is as follows:
-Sample input: (The following information is defined in the database, and this is an example; the number of individuals may vary)
-
-Height Weight Name
-180 75 Amin
-190 90 Mahdi
-175 75 Mohammad
-175 60 Ahmad
-
-Sample output:
-Mahdi 190 90
-Amin 180 75
-Ahmad 175 60
-Mohammad 175 75
-'''
-
 import mysql.connector
 
+# Connect to the MySQL database.
 cnx = mysql.connector.connect(user='root', password='',
                               host='127.0.0.1',
                               database='learn')
 
+# Create a cursor to execute MySQL queries.
 cursor = cnx.cursor()
 
+# Define the SQL query to select all rows from the 'employees' table.
 query = 'SELECT * FROM employees'
+
+# Execute the query to fetch data from the database.
 cursor.execute(query)
+
+# Create an empty list to store dictionaries of employee information.
 listOfDic = list()
+
+# Iterate through the result set and convert each row into a dictionary.
+# Each dictionary represents an employee with 'name', 'weight', and 'height' keys.
 for (name,weight,height) in cursor:
     dictOfEmp = dict()
     dictOfEmp['name'] = name
     dictOfEmp['weight'] = weight
     dictOfEmp['height'] = height
     listOfDic.append(dictOfEmp)
+
+# Sort the list of dictionaries based on the 'height' in descending order and 'weight' in ascending order.
+# This way, the employees will be printed in ascending order of height and, in case of a tie, lower weight will be considered first.
 s = sorted(listOfDic, key = lambda x: (-x['height'], x['weight']))
 
+# Print the employee information in the required format (name, height, weight).
 for i in range(len(s)):
     print(s[i]['name'],s[i]['height'],s[i]['weight'])
+
+# Commit any changes made to the database (not applicable in this code, as it only reads data).
 cnx.commit()
