@@ -1,3 +1,5 @@
+# MLexp.py - Car Price Prediction Using Machine Learning
+
 from typing import AnyStr
 from bs4.element import PYTHON_SPECIFIC_ENCODINGS
 import requests
@@ -10,29 +12,34 @@ from sklearn import tree
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
-
+# Read the car data from the CSV file 'dataB.csv' using pandas.
 cr = pd.read_csv("E:\workplace\python\Advanced Python\s6\dataB.csv")
 
-# œ? «? Ãœ?œ —Ê «“ ò«—»— „?ê?—Â Ê »Â ›«?· «÷«›Â „?ò‰œ
-# Ê Êﬁ ? ›«?· œ«—Â òœ „?‘Â «ÿ·«⁄«  Ãœ?œ ò«—»— Â„ »«Â«‘ òœ „?‘Â  « » Ê‰?„ »⁄œ‘ œ? «? òœ ‘œÂ —« »œ?„ »Â Å—œ?ò 
-
+# √è?√ä√á? √å√è?√è √ë√¶ √á√í Àú√á√ë√à√ë √£?¬ê?√ë√• √¶ √à√• √ù√á?√° √á√ñ√á√ù√• √£?Àú√§√è
+# √¶ √¶√û√ä? √ù√á?√° √è√á√ë√• Àú√è √£?√î√• √á√ò√°√á√ö√á√ä √å√è?√è Àú√á√ë√à√ë √•√£ √à√á√•√á√î Àú√è √£?√î√• √ä√á √à√ä√¶√§?√£ √à√ö√è√î √è?√ä√á? Àú√è √î√è√• √ë√á √à√è?√£ √à√• ¬Å√ë√è?Àú√ä
+# Collect new car data from the user or use the default data (Acura, SH-AWD, 1046, 2, CA, 2019, 0).
 new_data = "Acura,SH-AWD,1046,2,CA,2019,0"
 yOrn = input("We considered the following data : Acura,SH-AWD,1046,2,CA,2019,0 , if you wanna add another data enter y else enter n :")
 if yOrn == "y" or yOrn== "Y":
     new_data = input("plz enter the current model_name,model,mile,accident,location,year,price : ")
 new_data = new_data + "\n"
+
+# Append the new car data to the CSV file 'dataB.csv'.
 with open('E:\workplace\python\Advanced Python\s6\dataB.csv','a') as fd:
     fd.write(new_data)
 
+
+# Encode categorical columns ('model_name', 'model', 'accident', 'location', 'year') using LabelEncoder.
 label_encoders = {}
 categorical_columns = ["model_name" ,"model"  ,"accident","location", "year" ]
 
-#òœ ê–«—? „?ò‰?„ çÊ‰ œ”?é‰  —? «” —?‰ê ﬁ»Ê· ‰„?ò‰Â 
+#Àú√è ¬ê√ê√á√ë? √£?Àú√§?√£ ¬ç√¶√§ √è√ì?≈Ω√§ √ä√ë? √á√ì√ä√ë?√§¬ê √û√à√¶√° √§√£?Àú√§√• 
 for column in categorical_columns:
     label_encoders[column] = LabelEncoder()
     cr[column] = label_encoders[column].fit_transform(cr[column]) 
 
-# Õ«·« òÂ òœ ê–«—? ‘œ „?«?„ Ê Ê—Êœ? Ê Œ—ÊÃ? œ?”?é‰  —? —Ê „ﬁœ«— œÂ? „?ò‰?„
+# √ç√á√°√á Àú√• Àú√è ¬ê√ê√á√ë? √î√è √£?√á?√£ √¶ √¶√ë√¶√è? √¶ √é√ë√¶√å? √è?√ì?≈Ω√§ √ä√ë? √ë√¶ √£√û√è√á√ë √è√•? √£?Àú√§?√£
+# Prepare features (x) and target variable (y) for the Machine Learning model.
 x=[]
 y=[]
 
@@ -43,22 +50,24 @@ for line in cr.values:
         w.append(int(zline))
     x.append(line[0:6])
     y.append(line[6])
-#¬Œ—?‰ ”ÿ— Ê«—œ ‘œÂ œ? «? Ãœ?œÂ Å” «“ Ê—Êœ? Ê Œ—ÊÃ? Â« Å«Å „?ò‰?„   
+    
+#√Ç√é√ë?√§ √ì√ò√ë √¶√á√ë√è √î√è√• √è?√ä√á? √å√è?√è√• ¬Å√ì √á√í √¶√ë√¶√è? √¶ √é√ë√¶√å? √•√á ¬Å√á¬Å √£?Àú√§?√£   
+# Extract the new car data and prepare it for prediction.
 new_data = x.pop()
 y.pop()
 
-#¬Œ—?‰ ”ÿ— —Ê «“ ›«?· Â„ Å«ò „?ò‰?„ 
+#√Ç√é√ë?√§ √ì√ò√ë √ë√¶ √á√í √ù√á?√° √•√£ ¬Å√áÀú √£?Àú√§?√£ 
 f = open('E:\workplace\python\Advanced Python\s6\dataB.csv', "r+")
 lines = f.readlines()
 lines.pop()
 f = open('E:\workplace\python\Advanced Python\s6\dataB.csv', "w+")
 f.writelines(lines)
 
-#Œ» Õ«·« „?œ?„‘ »Â œ?”?é‰  —?  « „œ· »‰œ?‘Ê‰ ò‰Â
+#√é√à √ç√á√°√á √£?√è?√£√î √à√• √è?√ì?≈Ω√§ √ä√ë? √ä√á √£√è√° √à√§√è?√î√¶√§ Àú√§√•
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(x,y)
 
-#«?‰Ã« Â„ »—«? «?‰òÂ »œ?„‘ »Â Å—œ?ò ?Â ¬—«?Â œ—”  „?”«“?„ Ê „?œ?„‘ »Â Å—œ?ò 
+#√á?√§√å√á √•√£ √à√ë√á? √á?√§Àú√• √à√è?√£√î √à√• ¬Å√ë√è?Àú ?√• √Ç√ë√á?√• √è√ë√ì√ä √£?√ì√á√í?√£ √¶ √£?√è?√£√î √à√• ¬Å√ë√è?Àú√ä
 list_new_data = []
 for data in new_data:
     list_new_data.append(data)
